@@ -1,3 +1,4 @@
+
 name: Build Flutter APK
 
 on:
@@ -22,7 +23,7 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-         flutter-version: '3.47.7'. 
+          flutter-version: '3.47.7'
           channel: 'stable'
 
       - name: Clean previous builds
@@ -35,10 +36,8 @@ jobs:
 
       - name: Fix Android Build Configuration
         run: |
-          # Ensure compileSdkVersion and targetSdkVersion are explicitly defined
           BUILD_GRADLE="android/app/build.gradle"
           if [ -f "$BUILD_GRADLE" ]; then
-            echo "Applying SDK version fixes..."
             sed -i 's/minSdkVersion flutter.minSdkVersion/minSdkVersion 21/' "$BUILD_GRADLE" || true
           fi
 

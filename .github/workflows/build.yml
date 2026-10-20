@@ -33,6 +33,11 @@ jobs:
           rm -rf android
           flutter create . --platforms=android --org=com.example --project-name=kohinoor_ai
 
+      - name: Fix Gradle and AGP compatibility for plugins
+        run: |
+          # Ensure local.properties exists
+          echo "sdk.dir=$ANDROID_HOME" > android/local.properties
+
       - name: Install dependencies
         run: flutter pub get
 

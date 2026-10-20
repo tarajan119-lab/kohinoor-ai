@@ -27,7 +27,7 @@ jobs:
 
       - name: Re-create Android files if missing
         run: |
-          flutter create . --platforms=android --org=com.example
+          flutter create . --platforms=android --org=com.example --project-name=kohinoor_ai
 
       - name: Install dependencies
         run: flutter pub get

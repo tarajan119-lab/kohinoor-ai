@@ -29,6 +29,12 @@ jobs:
         run: |
           flutter create . --platforms=android --org=com.example --project-name=kohinoor_ai
 
+      - name: Fix Gradle project name
+        run: |
+          if [ -f android/settings.gradle ]; then
+            sed -i "s/rootProject.name = .*/rootProject.name = 'kohinoor_ai'/" android/settings.gradle
+          fi
+
       - name: Install dependencies
         run: flutter pub get
 

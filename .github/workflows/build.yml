@@ -2,21 +2,38 @@ name: Build Flutter APK
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: subosito/flutter-action@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
         with:
-          flutter-version: '3.x'
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
           channel: 'stable'
 
-      - run: flutter pub get
-      - run: flutter build apk --release
+      - name: Re-create Android files if missing
+        run: |
+          flutter create . --platforms=android --org=com.example
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Release APK
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

@@ -11,12 +11,12 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  speech_to_text: ^7.5.0
-  flutter_tts: ^4.2.5
+  speech_to_text: ^7.0.0
+  flutter_tts: ^4.0.2
   permission_handler: ^11.3.1
   flutter_contacts: ^1.1.9+2
-  url_launcher: ^6.3.1
-  http: ^1.2.2
+  url_launcher: ^6.2.5
+  http: ^1.2.0
   installed_apps: ^1.5.0
 
 dev_dependencies:

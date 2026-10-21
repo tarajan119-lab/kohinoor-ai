@@ -28,6 +28,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Fix Android v1 Embedding
+        run: |
+          MANIFEST="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MANIFEST" ]; then
+            sed -i '/flutterEmbedding/d' "$MANIFEST"
+          fi
+
       - name: Build Release APK
         run: flutter build apk --release
 
